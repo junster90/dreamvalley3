@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
   validate :is_staff
   validates :first_name, :last_name, presence: true
 
+  def self.from_omniauth(auth)
+
+  end
+
   def staff?
     self.email.ends_with?("@mindvalley.com")
   end
