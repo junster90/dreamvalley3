@@ -4,8 +4,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:mindvalley]
 
+  validate :is_staff
 
   def staff?
-    false unless self.email.ends_with?("@mindvalley.com")
+    self.email.ends_with?("@mindvalley.com")
+  end
+
+  protected
+
+  def is_staff
+    errors.add(:email, "is not a staff's email") unless staff?
   end
 end

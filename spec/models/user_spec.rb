@@ -13,7 +13,7 @@ RSpec.describe User, type: :model do
     context "for a non-mindvalley staff" do
       subject { build(:nonstaff) }
 
-      xit "is not allowed" do
+      it "is not allowed" do
         expect(subject).to_not be_valid
       end
     end
