@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Users::OmniauthCallbacksController, type: :controller do
   describe '#callback' do
-    context 'a mindvalley staff logs in' do
+    context 'a mindvalley staff returns from auth0' do
       let(:response_hash) { build(:staff_hash) }
       let(:staff) {
         User.new(
