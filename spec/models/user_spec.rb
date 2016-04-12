@@ -1,19 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe "user access" do
+  describe "account creation" do
     context "for a mindvalley staff" do
-      subject { FactoryGirl.build(:staff) }
+      subject { build(:staff) }
 
       it "is allowed" do
         expect(subject).to be_valid
       end
     end
 
-    it "is not allowed if user is not a mindvalley staff" do
-      let(:nonstaff) { build(:nonstaff) }
+    context "for a non-mindvalley staff" do
+      subject { build(:nonstaff) }
 
-      expect(:nonstaff).to_not be_valid
+      xit "is not allowed" do
+        expect(subject).to_not be_valid
+      end
     end
   end
 end
