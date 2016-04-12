@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:mindvalley]
 
   validate :is_staff
+  validates :first_name, :last_name, presence: true
 
   def staff?
     self.email.ends_with?("@mindvalley.com")
