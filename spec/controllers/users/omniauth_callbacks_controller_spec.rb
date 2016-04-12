@@ -16,10 +16,22 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
         )
       }
 
-      it 'assigns the correct user' do
-        allow(User).to receive(:from_omniauth).with(response_hash).and_return(staff)
+      before do 
+        @request.env["devise.mapping"] = Devise.mappings[:user]
+        allow(User).to receive(:from_omniauth).and_return(staff)
+        get :mindvalley
+      end
 
-        expect(assigns(:user)).to eq(staff)
+      it 'assigns the correct user' do
+        expect(assigns(:user)).to eq staff
+      end
+
+      it 'signs in the user to session' do
+        expect(controller.current_user).to eq staff
+      end
+
+      xit 'redirects to the user profile page' do
+
       end
     end
 
