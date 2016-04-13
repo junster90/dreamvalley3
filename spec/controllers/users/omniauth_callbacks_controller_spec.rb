@@ -30,6 +30,12 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
         expect(controller.current_user).to eq staff
       end
 
+      it 'saves the user' do
+        user = User.find_by(email: response_hash["info"]["email"])
+
+        expect(user.email).to eq response_hash["info"]["email"]
+      end
+
       xit 'redirects to the user profile page' do
 
       end
@@ -61,6 +67,12 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
 
       it 'does not sign in the user to session' do
         expect(controller.current_user).to be_nil
+      end
+
+      it 'does not saves the user' do
+        user = User.find_by(email: response_hash["info"]["email"])
+        byebug
+        expect(user).to eq nil
       end
 
       it 'redirects to the root page with an error' do
