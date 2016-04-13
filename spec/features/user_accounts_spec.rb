@@ -8,26 +8,14 @@ feature 'User Accounts' do
   end
 
   #user can login
-  scenario 'login works' do
+  scenario 'mindvalley staff can login' do
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:mindvalley] = build(:staff_hash)
-    
+
     visit root_path
-    # byebug
-    # @request.env["devise.mapping"] = Devise.mappings[:user]
-
-
+ 
     click_link 'Login'
 
-
-    it 'redirects to home page' do
-      expect(response).to redirect_to root_path
-    end
-
-    it 'signs in the user' do
-      expect(page).to have_content response_hash['info']['email']
-    end
-
-
+    expect(page).to have_content OmniAuth.config.mock_auth[:mindvalley]['info']['email']
   end
 end

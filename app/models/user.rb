@@ -8,7 +8,15 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, presence: true
 
   def self.from_omniauth(auth)
-
+    user = where(provider: auth["provider"], uid: auth["uid"].to_s).first || where(email: auth["info"]["email"]).first || self.new()
+    user.provider = auth["provider"]
+    user.uid = auth["uid"]
+    user.first_name = auth["info"]["first_name"]
+    user.last_name = auth['info']['last_name']
+    user.email = auth["info"]["email"]
+    user.token = auth["credentials"]["token"]
+    user.id_token = auth["credentials"]["id_token"]
+    return user
   end
 
   def staff?
