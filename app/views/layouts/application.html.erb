@@ -7,6 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div>
+  <% if current_user %>
+    <%= link_to current_user.first_name, root_path %>
+  <% else %>
+    <%= link_to "Login", user_omniauth_authorize_path(:mindvalley) %>
+  <% end %>
+</div>
 
 <%= yield %>
 

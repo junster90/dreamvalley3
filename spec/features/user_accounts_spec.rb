@@ -9,13 +9,26 @@ feature 'User Accounts' do
 
   #user can login
   scenario 'mindvalley staff can login' do
+    # Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+    # Rails.application.env_config["omniauth.auth"] = build(:staff_hash)
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:mindvalley] = build(:staff_hash)
+    user = User.create!(
+      password: "password",
+      password_confirmation: "password",
+      provider: OmniAuth.config.mock_auth[:mindvalley]["provider"],
+      uid: OmniAuth.config.mock_auth[:mindvalley]["uid"],
+      first_name: OmniAuth.config.mock_auth[:mindvalley]["info"]["first_name"],
+      last_name: OmniAuth.config.mock_auth[:mindvalley]['info']['last_name'],
+      email: OmniAuth.config.mock_auth[:mindvalley]["info"]["email"],
+      token: OmniAuth.config.mock_auth[:mindvalley]["credentials"]["token"],
+      id_token: OmniAuth.config.mock_auth[:mindvalley]["credentials"]["id_token"]
+    )
 
     visit root_path
  
     click_link 'Login'
 
-    expect(page).to have_content OmniAuth.config.mock_auth[:mindvalley]['info']['email']
+    expect(page).to have_content OmniAuth.config.mock_auth[:mindvalley]['info']['first_name']
   end
 end

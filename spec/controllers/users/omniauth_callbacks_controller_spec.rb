@@ -71,7 +71,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
 
       it 'does not saves the user' do
         user = User.find_by(email: response_hash["info"]["email"])
-        byebug
+        
         expect(user).to eq nil
       end
 
