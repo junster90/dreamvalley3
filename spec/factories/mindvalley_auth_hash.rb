@@ -19,7 +19,7 @@ FactoryGirl.define do
           info: { 
             first_name: first_name,
             last_name: last_name,
-            email: first_name + "@mindvalley.com"
+            email: first_name.downcase + "@mindvalley.com"
           },
           credentials: {
             token: token,
@@ -37,7 +37,7 @@ FactoryGirl.define do
           info: { 
             first_name: first_name,
             last_name: last_name,
-            email: first_name + "@gmail.com"
+            email: first_name.downcase + "@gmail.com"
           },
           credentials: {
             token: token,

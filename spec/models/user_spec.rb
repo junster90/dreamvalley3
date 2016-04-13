@@ -33,6 +33,26 @@ RSpec.describe User, type: :model do
     it 'instantiates a new user with the hash' do
       expect(User.from_omniauth(auth_hash)).to be_a(User)
     end
+
+    it 'returns the correct user according to the hash' do
+      expect(User.from_omniauth(auth_hash).email).to eq auth_hash['info']['email']
+    end
+
+    it 'finds existing users with the hash' do
+      user = User.create!(
+        password: "password",
+        password_confirmation: "password",
+        provider: auth_hash["provider"],
+        uid: auth_hash["uid"],
+        first_name: auth_hash["info"]["first_name"],
+        last_name: auth_hash['info']['last_name'],
+        email: auth_hash["info"]["email"],
+        token: auth_hash["credentials"]["token"],
+        id_token: auth_hash["credentials"]["id_token"]
+      )
+
+      expect(User.from_omniauth(auth_hash).id).to be user.id
+    end
   end
 
   describe '.staff?' do
