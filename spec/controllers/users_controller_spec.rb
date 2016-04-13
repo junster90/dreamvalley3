@@ -3,15 +3,15 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   describe '#show' do
     describe 'GET' do
-      subject { create(:user) }
+      subject { create(:staff) }
 
       it "assigns the right user" do
-        get :show
+        get :show, id: subject.id
         expect(assigns(:user)).to eq subject
       end
 
-      it 'renders the :new template' do
-        get :show
+      it 'renders the :show template' do
+        get :show, id: subject.id
         expect(response).to render_template 'show'
       end
     end
