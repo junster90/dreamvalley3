@@ -36,8 +36,8 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
         expect(user.email).to eq response_hash["info"]["email"]
       end
 
-      xit 'redirects to the user profile page' do
-
+      it 'redirects to the user profile page' do
+        expect(response).to redirect_to(user_path(controller.current_user))
       end
     end
 
