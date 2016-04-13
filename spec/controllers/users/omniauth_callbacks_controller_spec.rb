@@ -64,12 +64,11 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
       end
 
       it 'redirects to the root page with an error' do
+        expect(flash[:error]).to eq "Sorry, you're not authorised."
         expect(response).to redirect_to(root_path)
       end
+
     end
-    # fake a response hash
-    # stub the user class methods to check user persisting
-    # check if sign in with devise works by expecting page to have "signed in"
   end
 
   describe '#failure' do
