@@ -4,7 +4,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.staff?
       @user.save
-      sign_in_user
+      sign_in @user, notice: 'Signed in!', event: :authentication
+      redirect_to user_path(current_user)
     else
       flash[:error] = "Sorry, you're not authorised."
       redirect_to root_path
@@ -14,10 +15,4 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def failure
   end
 
-  private
-
-  def sign_in_user
-    request.env['omniauth.origin'] ||= root_url
-    sign_in_and_redirect @user, notice: 'Signed in!', event: :authentication
-  end
 end
