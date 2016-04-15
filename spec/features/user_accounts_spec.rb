@@ -43,14 +43,4 @@ feature 'User Accounts' do
 
     expect(page).to have_content colleague.first_name
   end
-
-  scenario 'user gets redirected to sign in before user can view profiles' do
-    user = create(:staff)
-    colleague = create(:staff)
-
-    visit user_path(colleague)
-
-    expect(current_path).to eq user_omniauth_authorize_path(:mindvalley)
-  end
-
 end
