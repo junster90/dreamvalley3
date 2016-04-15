@@ -2,7 +2,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @goals = CollectUserGoalService.new(@user).collect_all
+    # @goals = CollectUserGoalService.new(@user).collect_all
+    @goals = @user.goals
   end
 
   private

@@ -1,16 +1,8 @@
 <p><%= @user.first_name %> <%= @user.last_name %><p>
 
-<h2>Experiences</h2>
-<% @goals.experiences.each do |e| %>
-<%= e.description %>
-<% end %>
-
-<h2>Growth</h2>
-<% @goals.growths.each do |e| %>
-<%= e.description %>
-<% end %>
-
-<h2>Contribution</h2>
-<% @goals.contributions.each do |e| %>
-<%= e.description %>
+<% Goal.category.values.each do |cat| %>
+  <h2><%= cat.humanize %></h2>
+  <% @goals.with_category(cat).each do |goal| %>
+  <%= goal.description %>
+  <% end %>
 <% end %>
