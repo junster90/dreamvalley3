@@ -1,5 +1,11 @@
 module LoginHelper
   def create_and_login_user
+    user = create_user
+    login_user(user)
+    return user
+  end
+
+  def create_user
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:mindvalley] = build(:staff_hash)
     user = User.create!(
@@ -13,7 +19,10 @@ module LoginHelper
       token: OmniAuth.config.mock_auth[:mindvalley]["credentials"]["token"],
       id_token: OmniAuth.config.mock_auth[:mindvalley]["credentials"]["id_token"]
     )
+    return user
+  end
 
-    login_as(user, :scope => :user)
+  def login_user(user)
+    login_as(user, scope: :user)
   end
 end
