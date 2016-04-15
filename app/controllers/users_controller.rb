@@ -3,10 +3,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     service = CollectUserGoalService.new(@user)
-    service.collect_all
-    @experiences = service.experience
-    @growths = service.growth
-    @contributions = service.contribution
+    @goals = service.collect_all
+  
   end
 
   private
