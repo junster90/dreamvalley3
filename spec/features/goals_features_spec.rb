@@ -2,9 +2,9 @@ require 'rails_helper'
 
 feature 'Goals Features' do
   scenario 'user can create goals' do
-    create_and_login_user
+    user = create_and_login_user
 
-    visit new_goal_path
+    visit new_user_goal_path(user)
 
     expect(page).to have_content "New Goal"
   end
