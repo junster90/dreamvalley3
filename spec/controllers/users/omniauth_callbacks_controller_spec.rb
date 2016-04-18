@@ -37,7 +37,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
       end
 
       it 'redirects to the user profile page' do
-        expect(response).to redirect_to(user_path(controller.current_user))
+        expect(response).to redirect_to(user_goals_path(controller.current_user))
       end
     end
 

@@ -1,0 +1,10 @@
+<h1>Edit Goal</h1>
+
+<%= form_for :goals, url: user_goal_path, method: "put" do |f| %>
+  <%= f.label :description %>
+  <%= f.text_field :description, value: @goal.description, required: true %>
+  <%= f.label :category %>
+  <%= f.select :category, GoalsHelper::Questions %>
+
+  <%= f.submit "Submit" %>
+<% end %> 

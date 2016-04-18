@@ -1,0 +1,14 @@
+<p><%= @user.first_name %> <%= @user.last_name %><p>
+
+<% Goal.category.values.each do |cat| %>
+  <div>
+    <h2><%= cat.humanize %></h2>
+    <% @goals.with_category(cat).each do |goal| %>
+      <p><%= goal.description %></p>
+      <% if goal.user == current_user %>
+        <%= link_to 'Edit', edit_user_goal_path(current_user, goal) %>
+        <%= link_to 'Delete', user_goal_path(current_user, goal), method: 'delete' %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
