@@ -8,7 +8,14 @@ RSpec.describe HomeController, type: :controller do
       expect(response).to have_http_status(:success)
     end
 
-    it "renders the :index template" do
+    it 'assigns 5 random goals' do
+      goals = create_list(:goal, 5)
+
+      get :index
+      expect(assigns(:goals)).to match_array goals
+    end
+
+    it 'renders the :index template' do
       get :index
       expect(response).to render_template 'index'
     end

@@ -1,6 +1,9 @@
 FactoryGirl.define do
   factory :goal do
-    description "MyString"
-    category "MyString"
+    sequence :description do |n|
+      "Goal#{n}"
+    end
+    category Goal.category.values.sample
+    user User.first
   end
 end
