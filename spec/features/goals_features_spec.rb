@@ -37,6 +37,18 @@ feature 'Goals Features' do
     expect(page).to have_content "I want a pet penguin!"
   end
 
+  scenario 'user can edit goals' do
+    user = create_and_login_user
+    create_goal(random_question, user)
+
+    visit edit_user_goal_path(user, user.goals.last)
+
+    fill_in "Description", with: "EDITED!"
+    select random_question, from: "goals[category]"
+
+    expect(page).to have_content "EDITED!"
+  end
+
   def random_question
     GoalsHelper::Questions.sample.first
   end

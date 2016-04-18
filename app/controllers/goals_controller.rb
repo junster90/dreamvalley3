@@ -14,8 +14,11 @@ class GoalsController < ApplicationController
     else
       render :new
     end
-
   end 
+
+  def edit
+
+  end
 
   private
   def goal_params
