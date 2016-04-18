@@ -1,0 +1,8 @@
+<p><%= @user.first_name %> <%= @user.last_name %><p>
+
+<% Goal.category.values.each do |cat| %>
+  <h2><%= cat.humanize %></h2>
+  <% @goals.with_category(cat).each do |goal| %>
+  <%= goal.description %>
+  <% end %>
+<% end %>

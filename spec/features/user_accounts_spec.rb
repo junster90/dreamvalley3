@@ -27,7 +27,7 @@ feature 'User Accounts' do
 
     login_as(user, :scope => :user)
 
-    visit user_path(colleague)
+    visit user_goals_path(colleague)
 
     expect(page).to have_content colleague.first_name
   end

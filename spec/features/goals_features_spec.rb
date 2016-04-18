@@ -32,7 +32,7 @@ feature 'Goals Features' do
     user = create_and_login_user
     create_goal(random_question, user)
 
-    visit user_path(user)
+    visit user_goals_path(user)
 
     expect(page).to have_content "I want a pet penguin!"
   end
