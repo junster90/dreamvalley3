@@ -17,7 +17,16 @@ class GoalsController < ApplicationController
   end 
 
   def edit
+  end
 
+  def update
+    goal = Goal.find(params[:id])
+    goal.update_attributes(goal_params)
+    if goal.save
+      redirect_to user_goal_path(current_user, goal)
+    else
+      render :edit
+    end
   end
 
   private

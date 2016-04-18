@@ -45,6 +45,7 @@ feature 'Goals Features' do
 
     fill_in "Description", with: "EDITED!"
     select random_question, from: "goals[category]"
+    click_button 'Submit'
 
     expect(page).to have_content "EDITED!"
   end
