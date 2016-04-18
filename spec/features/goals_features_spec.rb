@@ -50,6 +50,20 @@ feature 'Goals Features' do
     expect(page).to have_content "EDITED!"
   end
 
+  scenario 'user can delete goals' do
+    user = create_and_login_user
+    create_goal(random_question, user)
+    goal = user.goals.last.description
+
+    visit user_goals_path(user)
+
+    expect(page).to have_content "#{goal}"
+
+    click_on 'Delete'
+
+    expect(page).to_not have_content "#{goal}"
+  end
+
   def random_question
     GoalsHelper::Questions.sample.first
   end
