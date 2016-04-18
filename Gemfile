@@ -63,3 +63,4 @@ group :test do
   gem 'launchy'
 end
 
+gem "twitter-bootstrap-rails"
