@@ -1,5 +1,22 @@
 <p><%= @user.first_name %> <%= @user.last_name %><p>
 
+<h1> Your Profile </h1> 
+    <%= form_for @user do |f| %>
+
+        <%= f.label :email, "Email" -%>
+        <%= f.text_field :email -%>
+
+        <%= f.label :first_name, "First name" -%>
+        <%= f.text_field :first_name -%>
+
+        <%= f.label :last_name, "Last name" -%>
+        <%= f.text_field :last_name -%>
+
+    <% end %>
+    
+
+
+
 <% Goal.category.values.each do |cat| %>
   <h2><%= cat.humanize %></h2>
   <% @goals.with_category(cat).each do |goal| %>
