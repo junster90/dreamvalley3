@@ -64,3 +64,4 @@ group :test do
 end
 
 gem "twitter-bootstrap-rails"
+gem 'font-awesome-sass', '~> 4.3'
