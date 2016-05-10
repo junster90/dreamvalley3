@@ -4,6 +4,6 @@ FactoryGirl.define do
       "Goal#{n}"
     end
     category Goal.category.values.sample
-    user User.first
+    user { create(:staff) }
   end
 end
