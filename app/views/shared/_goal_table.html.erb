@@ -1,0 +1,18 @@
+<% @goals.category.values.each do |cat|  %>
+  <div class="col-md-4 col-sm-4">
+    <table class="table table-striped row" name="user-goals" id="user-goals">
+      <thead>
+      <tr>
+        <th> <%= cat.upcase -%>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @goals.with_category(cat).each do |goal|  %>
+          <tr>
+            <td> <%= goal.description %></td>
+          </tr>
+      <% end -%>
+      </tbody>
+    </table></div>
+<% end -%>

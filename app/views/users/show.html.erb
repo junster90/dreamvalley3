@@ -13,13 +13,5 @@
         <%= f.text_field :last_name -%>
 
     <% end %>
-    
 
-
-
-<% Goal.category.values.each do |cat| %>
-  <h2><%= cat.humanize %></h2>
-  <% @goals.with_category(cat).each do |goal| %>
-  <%= goal.description %>
-  <% end %>
-<% end %>
+<%= render :partial => "/shared/goal_table" %>
