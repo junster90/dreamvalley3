@@ -3,4 +3,6 @@ class HomeController < ApplicationController
   def index
     @goals = Goal.order("RANDOM()").first(5)
   end
+
+  private
 end

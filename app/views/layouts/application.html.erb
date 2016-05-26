@@ -11,21 +11,11 @@
         <%= csrf_meta_tags %>
     </head>
     <body>
-        <div>
-            <% if current_user %>
-                <%= link_to current_user.first_name || current_user.email, user_path(current_user) %>
-            <% else %>
-                <%= link_to "Login", user_omniauth_authorize_path(:mindvalley) %>
-            <% end %>
-        </div>
+        <%= render :partial => '/layouts/navbar' %>
 
         <%= yield %>
 
-        <footer>
-            <div class="container">
-                <h4>Social Media</h4>              
-            </div>
-        </footer>
+        <%= render :partial => "/layouts/footer" %>
 
     </body>
 </html>

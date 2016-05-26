@@ -1,18 +1,22 @@
-<% @goals.category.values.each do |cat|  %>
-  <div class="col-md-4 col-sm-4">
-    <table class="table table-striped row" name="user-goals" id="user-goals">
-      <thead>
-      <tr>
-        <th> <%= cat.upcase -%>
-        </th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @goals.with_category(cat).each do |goal|  %>
+<div class="row">
+  <% @goals.category.values.each do |cat| %>
+      <div class="col-md-4 col-sm-4">
+        <table class="table table-striped row" name="user-goals" id="user-goals">
+          <thead>
           <tr>
-            <td> <%= goal.description %></td>
+            <th> <%= cat.upcase -%>
+            </th>
           </tr>
-      <% end -%>
-      </tbody>
-    </table></div>
-<% end -%>
+          </thead>
+          <tbody>
+          <% @goals.with_category(cat).each do |goal| %>
+              <tr>
+                <td> <%= goal.description %></td>
+              </tr>
+          <% end -%>
+          </tbody>
+        </table>
+      </div>
+  <% end -%>
+</div>
+<%= link_to 'New Goal', new_user_goal_path(user_id: current_user.id), class: 'button button-primary', role: 'button' %>
