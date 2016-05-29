@@ -1,0 +1,37 @@
+nav.navbar.navbar-default {
+
+  background-color: _palette(fg);
+
+  .navbar-brand {
+    text-decoration: underline;
+    font-weight: lighter;
+
+    &:hover {
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+
+  ul.nav.navbar-nav {
+    li {
+      &:hover {
+        background-color: _palette(fg-darker);
+      }
+    }
+  }
+}
+
+footer {
+  background-color: _palette(fg);
+
+  bottom: 0;
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 4px;
+
+  li {
+    &:hover {
+      background-color: _palette(fg-darker);
+    }
+  }
+}
